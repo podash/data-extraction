@@ -1,8 +1,8 @@
 import pandas as pd
 
-mainFile = "AAVE-V3-ETH-DAI.csv"
+mainFile = "AAVE-V3-ETH-USDC.csv"
 
-ltvFile = "AAVE-V3-ETH-DAI-LTV.csv"
+ltvFile = "AAVE-V3-ETH-USDC-LTV.csv"
 
 # Read the CSV file into a Pandas DataFrame
 df = pd.read_csv(mainFile)

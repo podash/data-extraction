@@ -29,7 +29,7 @@ variables = {
   "orderBy": "timestamp",
   "where": {
     "market_": {
-      "name": "Aave Ethereum DAI"
+      "name": "Aave Ethereum USDC"
     }
   },
   "first": 303    
@@ -46,7 +46,7 @@ results = response.json()
 
 market_daily_snapshots = results["data"]["marketDailySnapshots"]
 
-with open("AAVE-V3-ETH-DAI.csv", mode="w", newline="") as csv_file:
+with open("AAVE-V3-ETH-USDC.csv", mode="w", newline="") as csv_file:
 
     writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
 
