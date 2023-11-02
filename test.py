@@ -103,6 +103,7 @@ query Query($orderDirection: OrderDirection, $orderBy: MarketDailySnapshot_order
     dailyDepositUSD
     dailyWithdrawUSD
     inputTokenPriceUSD
+    blockNumber
   }
 }
 """
@@ -135,7 +136,7 @@ for position in markets:
 
     with open(csv_name, mode="w", newline="") as csv_file:
 
-        writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD"])
+        writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
 
         writer.writeheader()
 
@@ -154,7 +155,8 @@ for position in markets:
                 "dailyDepositUSD": snapshot["dailyDepositUSD"],
                 "dailyWithdrawUSD": snapshot["dailyWithdrawUSD"],
                 "inputTokenPriceUSD": snapshot["inputTokenPriceUSD"],
-                "market": snapshot["market"]["name"]
+                "market": snapshot["market"]["name"],
+                "blockNumber": snapshot["blockNumber"]
             })
 
 
