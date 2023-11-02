@@ -20,6 +20,7 @@ query Query($orderDirection: OrderDirection, $orderBy: MarketDailySnapshot_order
     dailyDepositUSD
     dailyWithdrawUSD
     inputTokenPriceUSD
+    blockNumber
   }
 }
 """
@@ -28,7 +29,7 @@ variables = {
   "orderBy": "timestamp",
   "where": {
     "market_": {
-      "name": "Aave Arbitrum AAVE"
+      "name": "Aave Ethereum wstETH"
     }
   },
   "first": 303    
@@ -45,9 +46,9 @@ results = response.json()
 
 market_daily_snapshots = results["data"]["marketDailySnapshots"]
 
-with open("AAVE-V3-ARB-AAVE.csv", mode="w", newline="") as csv_file:
+with open("AAVE-V3-ETH-wstETH.csv", mode="w", newline="") as csv_file:
 
-    writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD"])
+    writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
 
     writer.writeheader()
 
@@ -66,5 +67,6 @@ with open("AAVE-V3-ARB-AAVE.csv", mode="w", newline="") as csv_file:
             "dailyDepositUSD": snapshot["dailyDepositUSD"],
             "dailyWithdrawUSD": snapshot["dailyWithdrawUSD"],
             "inputTokenPriceUSD": snapshot["inputTokenPriceUSD"],
-            "market": snapshot["market"]["name"]
+            "market": snapshot["market"]["name"],
+            "blockNumber": snapshot["blockNumber"]
         })
