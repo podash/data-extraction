@@ -15,9 +15,9 @@ header = [
     "maximumLTV"
 ]
 
-blocks = pd.read_csv('AAVE-V3-ETH-USDC.csv')
+blocks = pd.read_csv('AAVE-V3-ETH-rETH.csv')
 
-with open ("AAVE-V3-ETH-DAI-LTV.csv", mode="w", newline="") as csv_file:
+with open ("AAVE-V3-ETH-rETH-LTV.csv", mode="w", newline="") as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=header)
     writer.writeheader()
     for i in range(len(blocks)):
@@ -27,7 +27,7 @@ with open ("AAVE-V3-ETH-DAI-LTV.csv", mode="w", newline="") as csv_file:
             "number": endBlock
             },
             "where": {
-                "name": "Aave Ethereum USDC"
+                "name": "Aave Ethereum rETH"
             }    
         }
 

@@ -29,7 +29,7 @@ variables = {
   "orderBy": "timestamp",
   "where": {
     "market_": {
-      "name": "Aave Ethereum USDC"
+      "name": "Aave Ethereum rETH"
     }
   },
   "first": 303    
@@ -46,9 +46,9 @@ results = response.json()
 
 market_daily_snapshots = results["data"]["marketDailySnapshots"]
 
-with open("AAVE-V3-ETH-USDC.csv", mode="w", newline="") as csv_file:
+with open("AAVE-V3-ETH-rETH.csv", mode="w", newline="") as csv_file:
 
-    writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "utilizationRate", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
+    writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
 
     writer.writeheader()
 
@@ -60,7 +60,6 @@ with open("AAVE-V3-ETH-USDC.csv", mode="w", newline="") as csv_file:
             "totalDepositBalanceUSD": snapshot["totalDepositBalanceUSD"],
             "datetime": datetime_str,
             "totalValueLockedUSD": snapshot["totalValueLockedUSD"],
-            "utilizationRate": float(snapshot["totalBorrowBalanceUSD"]) / float(snapshot["totalDepositBalanceUSD"]),
             "borrowerStableRate": snapshot["rates"][0]["rate"],
             "borrowerVariableRate": snapshot["rates"][1]["rate"],
             "lenderVariableRate": snapshot["rates"][2]["rate"],
