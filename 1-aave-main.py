@@ -29,10 +29,10 @@ variables = {
   "orderBy": "timestamp",
   "where": {
     "market_": {
-      "name": "Aave Ethereum rETH"
+      "name": "Aave Polygon WMATIC"
     }
   },
-  "first": 303    
+  "first": 330    
 }
 
 data = {
@@ -40,13 +40,13 @@ data = {
     "variables": variables
 }
 
-response = requests.post("https://api.thegraph.com/subgraphs/name/messari/aave-v3-ethereum", json=data)
+response = requests.post("https://api.thegraph.com/subgraphs/name/messari/aave-v3-polygon", json=data)
 
 results = response.json()
 
 market_daily_snapshots = results["data"]["marketDailySnapshots"]
 
-with open("AAVE-V3-ETH-rETH.csv", mode="w", newline="") as csv_file:
+with open("AAVE-V3-Polygon-WMATIC.csv", mode="w", newline="") as csv_file:
 
     writer = csv.DictWriter(csv_file, fieldnames=["datetime", "totalValueLockedUSD", "totalBorrowBalanceUSD", "totalDepositBalanceUSD", "borrowerStableRate", "borrowerVariableRate", "lenderVariableRate", "market", "dailyDepositUSD", "dailyWithdrawUSD", "inputTokenPriceUSD", "blockNumber"])
 
